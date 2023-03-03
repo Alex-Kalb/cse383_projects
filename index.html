@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="hw5.css">
     <title>Hw 5 Form</title>
     <form action="https://ceclnx01.cec.miamioh.edu/~kalbaj/cse383/cse383_hw5/hw5s23.php" method="POST">
+    <div class="form-group">
         User Id: <br>
-        <input type="text" name="userids23"><br>
+        <input type="text" name="userids23" class="box"><br>
         Email: <br>
-        <input type="email" name="emails23s23"><br>
+        <input type="email" name="emails23" class="box"><br>
         Entry Year: <br>
-        <label for="2019">2019</label>
+        <label for="2019" class="label">2019</label>
             <input type="radio" id="2019" name="entryYears23" value="2019"><br>
-        <label for="2020">2020</label>
+        <label for="2020" class="label">2020</label>
             <input type="radio" id="2020" name="entryYears23" value="2020"><br>
-        <label for="2021">2021</label>
+        <label for="2021" class="label">2021</label>
             <input type="radio" id="2021" name="entryYears23" value="2021"><br>
-        <label for="2022">2022</label>
+        <label for="2022" class="label">2022</label>
             <input type="radio" id="2022" name="entryYears23" value="2022"><br>
-        <label for="2023">2023</label>
+        <label for="2023" class="label">2023</label>
             <input type="radio" id="2023" name="entryYears23" value="2023"><br>
-        <label for="0">other</label>
+        <label for="0" class="label">other</label>
             <input type="radio" id="0" name="entryYears23" value="0"><br>
         Birth Year: <br>
-        <select name="birthYears23">
+        <select name="birthYears23" class="box">
             <option value="1990">1990</option>
             <option value="1991">1991</option>
             <option value="1992">1992</option>
@@ -57,19 +59,19 @@
             <option value="2023">2023</option>
         </select><br>
         Expected Graduation Date: <br>
-        <input type="date" name="gradDates23"><br>
+        <input type="date" class="box" name="gradDates23"><br>
         Are you a CSE major: <br>
-        <label for="yes">Yes</label>
-        <input type="checkbox" name="cses23[0]" id="yes">
+        <label for="yes" class="label">Yes</label>
+        <input type="checkbox" value="yes" name="cses23" id="yes">
         <label for="no">No</label>
-        <input type="checkbox" name="cses23[1]" id="no"><br>
+        <input type="checkbox" value="no" name="cses23" id="no"><br>
         Do you own a car: <br>
-        <label for="yes">Yes</label>
-        <input type="checkbox" name="cars23[0]" id="yes">
+        <label for="yes" class="label">Yes</label>
+        <input type="checkbox" value="yes" name="cars23" id="yes">
         <label for="no">No</label>
-        <input type="checkbox" name="cars23[1]" id="no"><br>
+        <input type="checkbox" value="no" name="cars23" id="no"><br>
         Number of mobile devices: <br>
-        <select name="mobileDevices23">
+        <select name="mobileDevices23" class="box">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -83,11 +85,12 @@
             <option value="10">10</option>
         </select><br>
         Favorite quote: <br>
-        <textarea name="quotes23" cols="40" rows="5"></textarea><br>
+        <textarea name="quotes23" class="box" cols="40" rows="5"></textarea><br>
         Source of quote: <br>
-        <input type="url" name="quoteCites23"><br>
+        <input type="url" class="box" name="quoteCites23"><br>
         <input type="hidden" name="commands23" value="submit">
-        <input type="submit" value="Submit">
-        <input type="reset">
+        <input type="submit" class="box" value="Submit">
+        <input type="reset" class="box">
+    </div>
     </form>
 </html>
