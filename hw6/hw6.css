@@ -4,7 +4,7 @@
   Hw5
 */
 html {
-    background-image: url(download.jpg);
+    background-image: url(~kalbaj/public_html/cse383/cse383_hw5/download.jpg);
     size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,7 +40,7 @@ label {
     font-size: 20px;
 }
 
-.container {
+.form-body {
     color: indianred;
     padding: 20px;
     font-size: 25px;
