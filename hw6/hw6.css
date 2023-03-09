@@ -1,28 +1,38 @@
 /*
   Alex Kalb
   CSE383
-  Hw5
+  Hw6
 */
 html {
-    background-image: url(~kalbaj/public_html/cse383/cse383_hw5/download.jpg);
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-image: url(download.jpg);
     size: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .form-group{
-    background-color: white;
     border-radius: 25px;
     margin-left: auto;
     margin-right: auto;
     width: 40%;
     margin-top: 5%;
     margin-bottom: 5%;
-    opacity: 0.9
 }
 
+.container {
+    padding: 0;
+}
+
+.col-6 {
+    padding-left: 30px;
+    padding-top: 10px;
+}
 
 h1 {
     color: white;
@@ -36,20 +46,24 @@ h1 {
 }
 
 label {
-    
     font-size: 20px;
 }
 
 .form-body {
+    background-color: rgb(211, 211, 211, 0.75);
     color: indianred;
-    padding: 20px;
+    margin: auto;
+    font-weight: 650;
     font-size: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    padding-bottom: 20px;
+    
 }
 
 .box {
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 10px;
     border: solid red 1px;
     border-radius: 5px;
     color: white;
@@ -58,21 +72,27 @@ label {
     font-size: 15px;
 }
 
+.t {
+    width: 55%;
+}
+
 .label {
-    margin-left: 10px;
     color: darkslategray;
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+textarea {
+    width: 67%;
 }
 
 .sub{
     color: white;
-    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
     font-size: 25px;
     background-color: indianred;
     border: solid lightgrey 2px;
     border-radius: 10px;
     margin-left: 5px;
-}
-
-.no{
-    color: darkslategray;
 }
