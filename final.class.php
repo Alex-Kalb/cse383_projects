@@ -42,7 +42,7 @@ class final_rest
 		}
 		else {
 			try {
-				EXEC_SQL("insert into temperature (location, sensor, value, date) values (?,?,?,CURRENT_TIMESTAMP)",$location, $sensor, $value);
+				EXEC_SQL("insert into temperature (location, sensor, value, dateTime) values (?,?,?,CURRENT_TIMESTAMP)",$location, $sensor, $value);
 				$retData["status"]=0;
 				$retData["message"]="insert of '$value' for location: '$location' and sensor '$sensor' accepted";
 			}
@@ -54,5 +54,27 @@ class final_rest
 
 		return json_encode ($retData);
 	}
-}
 
+
+	public static function setStock ($stockTicker, $queryType, $jsonData)
+
+	{
+		if ($queryType != 'detail' && $queryType != 'news') {
+			$retData["status"]=1;
+			$retData["message"]="'$queryType' is not detail or news";
+		}
+		else {
+			try {
+				EXEC_SQL("insert into stock (stockTicker, queryType, jsonData, dateTime) values (?,?,?,CURRENT_TIMESTAMP)",$stockTicker, $queryType, $jsonData);
+				$retData["status"]=0;
+				$retData["message"]="insert of '$jsonData' for stock ticker: '$stockTicker' and queryType '$queryType' accepted";
+			}
+			catch  (Exception $e) {
+				$retData["status"]=1;
+				$retData["message"]=$e->getMessage();
+			}
+		}
+
+		return json_encode ($retData);
+	}
+}
