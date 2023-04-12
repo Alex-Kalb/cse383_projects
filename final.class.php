@@ -77,4 +77,21 @@ class final_rest
 
 		return json_encode ($retData);
 	}
+
+	public static function getStock ($date)
+
+	{
+		
+		try {
+			$retData["result"]= GET_SQL ("select * from stock where dateTime like ? order by dateTime", $date . "%");
+			$retData["status"]=0;
+			$retData["message"] = "Query success!";
+		}
+		catch  (Exception $e) {
+			$retData["status"]=1;
+			$retData["message"]=$e->getMessage();
+		}
+
+		return json_encode ($retData);
+	}
 }
