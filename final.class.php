@@ -81,7 +81,6 @@ class final_rest
 	public static function getStock ($date)
 
 	{
-		
 		try {
 			$retData["result"]= GET_SQL ("select * from stock where dateTime like ? order by dateTime", $date . "%");
 			$retData["status"]=0;
