@@ -3,9 +3,60 @@
 }
 
 body, html {
-    background-color: antiquewhite;
+    background-color: lightgray;
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: lightgray;
+}
+
+li {
+    list-style: none;
+}
+
+.burger {
+    margin: 5px;
+    color: green;
+}
+
+.dropdown {
+    background-color: green;
+    padding: 1em 0;
+    /*margin: 5px;*/
+    position: absolute; /*WITH RESPECT TO PARENT*/
+    display: none;
+    border-radius: 8px;
+   /* top: 35px;
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%); */
+}
+
+    
+.nav-item {
+    padding: 0.5em 1em;
+    width: 8em;
+    font-weight: 550;
+    text-align: center;
+}
+    
+.nav-item:hover {
+    background-color: rgb(0, 110, 0);
+}
+
+.burger:hover ~.dropdown {
+    display: block;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]:checked ~.dropdown {
+    display: block;
 }
 
