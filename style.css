@@ -3,7 +3,6 @@
 }
 
 body, html {
-
     height: 100%;
     margin: 0;
     padding: 0;
@@ -24,21 +23,23 @@ a {
 }
 
 .dropdown {
-    background-color: green;
-    padding: 1em 0;
+    background-color:limegreen;
+    padding: 0.5em 0;
     display: none;
     border-radius: 8px;
 }
     
 .nav-item {
-    padding: 0.5em 1em;
+    padding: 1em 1em;
     width: 8em;
     font-weight: 550;
     text-align: center;
+    border-radius: 8px;
+    margin: 15px;
 }
     
 .nav-item:hover {
-    background-color: rgb(0, 110, 0);
+    background-color: rgb(38, 158, 38);
 }
 
 .burger:hover ~.dropdown {
