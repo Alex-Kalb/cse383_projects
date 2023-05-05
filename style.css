@@ -3,19 +3,19 @@
 }
 
 body, html {
-    background-color: lightgray;
+
     height: 100%;
     margin: 0;
     padding: 0;
+    background-image: url(https://pix11.com/wp-content/uploads/sites/25/2021/10/Harambe-bananas.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 a {
     text-decoration: none;
     color: lightgray;
-}
-
-li {
-    list-style: none;
+    font-size: larger;
 }
 
 .burger {
@@ -26,16 +26,9 @@ li {
 .dropdown {
     background-color: green;
     padding: 1em 0;
-    /*margin: 5px;*/
-    position: absolute; /*WITH RESPECT TO PARENT*/
     display: none;
     border-radius: 8px;
-   /* top: 35px;
-    left: 50%;
-    top: 30px;
-    transform: translateX(35%); */
 }
-
     
 .nav-item {
     padding: 0.5em 1em;
@@ -60,3 +53,16 @@ input[type=checkbox]:checked ~.dropdown {
     display: block;
 }
 
+h1 {
+    display: inline;
+}
+
+h2 {
+    margin-right: 10px;
+}
+
+
+.header {
+    background-color: lightgray;
+    
+}
