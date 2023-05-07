@@ -1,5 +1,6 @@
 var URL="https://api.polygon.io/";
 var key="oVhmIj_vHLKvXKNcn3LNn95ImprN3LgO";
+var php="http://172.17.12.35/cse383_final/final.php?method=";
 var ticker=null;
 var exchange=null;
 getExchange();
@@ -50,11 +51,13 @@ function getDetails($ticker) {
     a=$.ajax({
         url: URL + "v3/reference/tickers/" + $ticker + "?apiKey=" + key,
         method: "GET",
-        success: function(data) {
-
-        }
     }).done(function(data) {
         console.log(data);
+        b=$.ajax({
+            url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data,
+             //"http://172.17.12.35/cse383_final/final.php?method=setStock&stockTicker=AAPL&queryType=detail&jsonData={}",
+            method: "POST"
+        });
     })
 }
 
@@ -64,9 +67,11 @@ function getNews($ticker) {
         method: "GET"
     }).done(function(data) {
         console.log(data);
+        $.ajax({
+            url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data,
+            method: "POST"
+        });
     })
 
-    $.ajax({
-        url: "http://172.17.12.35/cse383_final/final.class.php"
-    })
+    
 }
