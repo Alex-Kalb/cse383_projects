@@ -30,20 +30,29 @@ function getTicker($exchange) {
         url: URL + "v3/reference/tickers?exchange=" + $exchange + "&active=true&apiKey=" + key,
         method: "GET"
     }).done(function(data) {
-        $("#Stocks").html("<select name=\"Stock\" id=\"stock\"></select>");
-        $("#stock").html("");
+       
         len = data.count;
-        for (i=0;i<len;i++) {
-            $("#stock").append("<option value=\"" + data.results[i].ticker + "\">" + data.results[i].name + "</option>");
+        if(len > 0) {
+            $("#Stocks").html("<label for=\"stock\" class=\"col\">Stocks: </label>");
+            $("#Stocks").append("<select name=\"Stock\" id=\"stock\" class=\"col\"></select>");
+            $("#Stocks").addClass("Exchanges")
+            $("#stock").html("");
+            for (i=0;i<len;i++) {
+                $("#stock").append("<option value=\"" + data.results[i].ticker + "\">" + data.results[i].name + "</option>");
+            }
+            $("#Stocks").append("<input type=\"button\" class=\"col\" value=\"Details\" id=\"Details\"><input type=\"button\" class=\"col\" value=\"News\" id=\"News\">");
+            $("#Details").click( function() {
+                getDetails($("#stock").val());
+            });
+            $("#News").click(function() {
+                var val = $("#stock").val();
+                getNews(val);
+            });
+        } else {
+            alert("Exchange does not contain any Stocks");
+            $("#Stocks").html("");
+            $("#Stocks").removeClass("Exchanges");
         }
-        $("#Stocks").append("<input type=\"button\" value=\"Details\" id=\"Details\"><input type=\"button\" value=\"News\" id=\"News\">");
-        $("#Details").click( function() {
-            getDetails($("#stock").val());
-        });
-        $("#News").click(function() {
-            var val = $("#stock").val();
-            getNews(val);
-        });
     })
 }
 
@@ -55,7 +64,6 @@ function getDetails($ticker) {
         console.log(data);
         b=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data,
-             //"http://172.17.12.35/cse383_final/final.php?method=setStock&stockTicker=AAPL&queryType=detail&jsonData={}",
             method: "POST"
         });
     })
@@ -68,7 +76,7 @@ function getNews($ticker) {
     }).done(function(data) {
         console.log(data);
         $.ajax({
-            url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data,
+            url: php + "setStock&stockTicker=" + $ticker + "&queryType=news&jsonData=" + data,
             method: "POST"
         });
     })
