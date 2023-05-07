@@ -4,8 +4,6 @@ var php="http://172.17.12.35/cse383_final/final.php?method=";
 var ticker=null;
 var exchange=null;
 getExchange();
-getDetails();
-getNews();
 
 function getExchange() {
     a=$.ajax({
