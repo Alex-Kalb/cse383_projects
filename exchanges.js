@@ -1,8 +1,6 @@
 var URL="https://api.polygon.io/";
 var key="oVhmIj_vHLKvXKNcn3LNn95ImprN3LgO";
 var php="http://172.17.12.35/cse383_final/final.php?method=";
-var ticker=null;
-var exchange=null;
 getExchange();
 
 function getExchange() {
@@ -25,7 +23,7 @@ function getExchange() {
 
 function getTicker($exchange) {
     a=$.ajax({
-        url: URL + "v3/reference/tickers?exchange=" + $exchange + "&active=true&apiKey=" + key,
+        url: URL + "v3/reference/tickers?exchange=" + $exchange + "&active=true&order=asc&limit=1000&sort=ticker&apiKey=" + key,
         method: "GET"
     }).done(function(data) {
        
@@ -78,6 +76,4 @@ function getNews($ticker) {
             method: "POST"
         });
     })
-
-    
 }
