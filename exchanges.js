@@ -58,8 +58,10 @@ function getDetails($ticker) {
         method: "GET",
     }).done(function(data) {
         console.log(data);
+        $("#info").html("")
+        $("#info").append("<img src=\"" + data.results.branding.logo_url + "?apiKey=" + key + "\" alt='" + data.results.ticker + "'>");
         b=$.ajax({
-            url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data,
+            url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data.results,
             method: "POST"
         });
     })
@@ -72,7 +74,7 @@ function getNews($ticker) {
     }).done(function(data) {
         console.log(data);
         $.ajax({
-            url: php + "setStock&stockTicker=" + $ticker + "&queryType=news&jsonData=" + data,
+            url: php + "setStock&stockTicker=" + $ticker + "&queryType=news&jsonData=" + data.results,
             method: "POST"
         });
     })
