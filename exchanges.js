@@ -1,6 +1,22 @@
 var URL="https://api.polygon.io/";
 var key="oVhmIj_vHLKvXKNcn3LNn95ImprN3LgO";
 var php="http://172.17.12.35/cse383_final/final.php?method=";
+const today = new Date();
+const y = today.getFullYear();
+let m = today.getMonth() + 1;
+let d = today.getDate();
+
+if (d < 10) d = '0' + d;
+if (m < 10) m = '0' + m;
+
+const formattedToday = y + '-' + m + '-' + d;
+
+const lastWeek = new Date();
+lastWeek.setDate(lastWeek.getDate() - 7);
+let dd = lastWeek.getDate();
+if (dd < 10) dd = '0' + dd;
+
+const formattedLastWeek = y + '-' + m + '-' + dd;
 getExchange();
 
 function getExchange() {
@@ -54,14 +70,11 @@ function getTicker($exchange) {
 
 function getDetails($ticker) {
     a=$.ajax({
-        url: URL + "v3/reference/tickers/" + $ticker + "?apiKey=" + key,
-        method: "GET",
+        url: URL + "v2/aggs/ticker/" + $ticker + "/range/1/day/" + formattedLastWeek + "/" + formattedToday + "?adjusted=true&sort=asc&limit=120&apiKey=" + key,
+        method: "GET"
     }).done(function(data) {
         console.log(data);
         $("#info").html("");
-        if(data.results.branding != null) {
-            $("#info").append("<img src=\"" + data.results.branding.logo_url + "?apiKey=" + key + "\" alt='" + data.results.ticker + "'>");
-        }
         b=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data.results,
             method: "POST"
@@ -75,7 +88,20 @@ function getNews($ticker) {
         method: "GET"
     }).done(function(data) {
         console.log(data);
-        $("#info").html("");
+        if(data.count >0 ) {
+            $("#info").html("<div class='p'>Stocks</div>");
+            $("#info").append("<table id='table1' class='container'>");
+            $("#table1").html("<thead class='center'><tr class='row'><th class='col'>Stock</th><th class='col'>Date and Time</th><th class='col'>Type</th></tr></thead>");
+            $("#table1").append("<tbody id='stockLines' class='center'>");
+            $("#stockLines").html("");
+            for (let i = 0; i < data.count; i++) {
+                $("#stockLines").append("<tr class='row'><td class='col'>" + data.results[i].title + "</td><td class='col'>" + data.results[i].author + "</td><td class='col'> <a href='" + data.results[i].article_url + "'>" + data.results[i].publisher.name + "</a></td></tr>");
+            }
+            $("#table1").append("</tbody>");
+            $("#info").append("</table>");
+        } else {
+            alert("No recent news found");
+        }
         b=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=news&jsonData=" + data.results,
             method: "POST"
