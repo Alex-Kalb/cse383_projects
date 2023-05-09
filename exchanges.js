@@ -75,6 +75,7 @@ function getNews($ticker) {
         method: "GET"
     }).done(function(data) {
         console.log(data);
+        $("#info").html("");
         b=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=news&jsonData=" + data.results,
             method: "POST"
