@@ -88,7 +88,7 @@ h2 {
 
 input[type=button] {
     margin: 5px;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .Exchanges label {
@@ -96,4 +96,52 @@ input[type=button] {
     font-size: 25px;
     color: lightgrey;
     margin: 5px;
+}
+
+.ret {
+    background-color: grey;
+    margin: 20px;
+
+}
+
+input[type=number] {
+    border-radius: 20px;
+    padding-left: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
+}
+
+.his {
+    padding: 10px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    font-weight:bold;
+}
+
+.table {
+    background-color: rgb(144, 238, 144, 75%);
+    margin: auto;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.p {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: large;
+    text-align: center;
+}
+
+input[type=date] {
+    border-radius: 20px;
+    margin: 5px;
+}
+
+th {
+    font-weight: bolder;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

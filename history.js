@@ -12,19 +12,18 @@ function getStocks($date, $lines) {
         method: "POST"
     }).done(function(data) {
         if(data.result.length > 0) {
-            $("#table").html("<h2>Stocks<span id=\"lines\"></span></h2>");
-            $("#table").append("<table class='table'>");
-            $("#table").append("<thead><tr><th>Stock</th><th>Date and Time</th><th>Type</th></tr></thead>");
-            $("#table").append("<tbody id='stockLines'>");
+            $("#table").html("<div class='p'>Stocks</div>");
+            $("#table").append("<table id='table1' class='container'>");
+            $("#table1").html("<thead class='center'><tr class='row'><th class='col'>Stock</th><th class='col'>Date and Time</th><th class='col'>Type</th></tr></thead>");
+            $("#table1").append("<tbody id='stockLines' class='center'>");
             $("#stockLines").html("");
             for (let i = 0; i < $lines && i < data.result.length; i++) {
-                $("#stockLines").append("<tr><td>" + data.result[i].stockTicker + "</td><td>" + data.result[i].dateTime + "</td><td>" + data.result[i].queryType + "</td></tr>");
+                $("#stockLines").append("<tr class='row'><td class='col'>" + data.result[i].stockTicker + "</td><td class='col'>" + data.result[i].dateTime + "</td><td class='col'>" + data.result[i].queryType + "</td></tr>");
             }
-            $("#table").append("</tbody>");
+            $("#table1").append("</tbody>");
             $("#table").append("</table>");
         } else {
-            alert("No Stocks found on that date")
+            alert("No Stocks found on that date");
         }
-        
     })
 }
