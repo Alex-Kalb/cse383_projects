@@ -233,16 +233,11 @@ img {
     border-radius: 5px;
 }
 
-
-.inline {
-    display: inline;
-}
-
 .top {
     vertical-align: top;
 }
 
-.ret p {
+.ul {
     text-decoration: underline;
 }
 h1 {
@@ -271,4 +266,8 @@ p {
 }
 .dat {
     font-size: 25px;
+}
+
+.inline {
+    display: inline;
 }

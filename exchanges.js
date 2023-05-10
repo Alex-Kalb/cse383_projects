@@ -81,17 +81,28 @@ function getDetails($ticker) {
         $("#infoPage").append("<div class='col' id='logoCol'>");
         $("#infoPage").append("<div class='col' id='infoCol1'>");
         
-        $("#infoCol1").html("<p> At close on " + formattedToday + "</p><p class='inline top'>$</p>");
+        $("#infoCol1").html("<p class='ul'> At close on " + formattedToday + "</p><p class='inline top'>$</p>");
         $("#infoCol1").append("<h1 class='inline'>" + data.results[0].c + "</h1>");
         $("#infoCol1").append("<p class='inline'> USD</p>");
         b=$.ajax({
             url: URL + "v2/aggs/ticker/" + $ticker + "/range/1/day/" + formattedLastYear + "/" + formattedToday + "?adjusted=true&sort=asc&limit=50000&apiKey=" + key,
             method: "GET"
         }).done(function(data) {
-            $("#infoCol1").append("<p>52 week range</p><h1>" + data.results[0].c + " - " + data.results[data.count - 1].c + "</h1>");
+            var max = 0;
+            var min = Number.MAX_SAFE_INTEGER;
+            for ( i = 0 ; i < data.resultsCount; i++) {
+                if (data.results[i].c > max) {
+                    max = data.results[i].c;
+                }
+                if (data.results[i].c < min) {
+                    min = data.results[i].c;
+                }
+            }
+            
+            $("#infoCol1").append("<p class='ul'>52 week range</p><h1>" + min + " - " + max + "</h1>");
         })
         $("#infoPage").append("<div class='col' id='infoCol2'>");
-        $("#infoCol2").html("<p>Ticker</p><h1>" + $ticker + "</h1><p>Volume</p><h1>" + data.results[0].v + "</h1>");
+        $("#infoCol2").html("<p class='ul'>Ticker</p><h1>" + $ticker + "</h1><p class='ul'>Volume</p><h1>" + data.results[0].v + "</h1>");
         
         $("#infoPage").append("</div>");
         $("#info").append("</div>");
@@ -102,7 +113,8 @@ function getDetails($ticker) {
             method: "GET"
         }).done(function(data) {
             console.log(data);
-            $("#logoCol").append("<p>Name</p><h1>" + data.results.name + "</h1>");
+            $("#logoCol").append("<p class='ul'>Name</p><h1>" + data.results.name + "</h1>");
+            $("#infoCol1").append("<p class='ul'>Market Cap</p><p class='inline top'>$</p><h1 class='inline'>" + Math.round(data.results.market_cap / 1000000) + "M</h1><p class='inline'>USD</p>")
             if(data.results.branding.logo_url != null) {
                 $("#logoCol").prepend("<div class='col'><img src='" + data.results.branding.logo_url + "?apikey=" + key +"'></div>")
             }
@@ -115,7 +127,7 @@ function getDetails($ticker) {
         let close = [];
         let max = -1;
         for (i = 0; i < data.resultsCount; i++) {
-            close[i] = data.results[i].c;
+            close[i] = data.results[data.resultsCount - i - 1].c;
             if (max <= close[i]) {
                 max = close[i];
             }
