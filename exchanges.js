@@ -12,11 +12,13 @@ if (m < 10) m = '0' + m;
 const formattedToday = y + '-' + m + '-' + d;
 
 const lastWeek = new Date();
-lastWeek.setDate(lastWeek.getDate() - 7);
+lastWeek.setDate(lastWeek.getDate() - 11);
 let dd = lastWeek.getDate();
+let mm = lastWeek.getMonth() + 1;
 if (dd < 10) dd = '0' + dd;
+if (mm < 10) mm = '0' + mm;
 
-const formattedLastWeek = y + '-' + m + '-' + dd;
+const formattedLastWeek = y + '-' + mm + '-' + dd;
 getExchange();
 
 function getExchange() {
@@ -39,10 +41,9 @@ function getExchange() {
 
 function getTicker($exchange) {
     a=$.ajax({
-        url: URL + "v3/reference/tickers?exchange=" + $exchange + "&active=true&order=asc&limit=1000&sort=ticker&apiKey=" + key,
+        url: URL + "v3/reference/tickers?market=stocks&exchange=" + $exchange + "&active=true&order=asc&limit=1000&sort=ticker&apiKey=" + key,
         method: "GET"
     }).done(function(data) {
-       
         len = data.count;
         if(len > 0) {
             $("#Stocks").html("<label for=\"stock\" class=\"col\">Stocks: </label>");
@@ -74,7 +75,50 @@ function getDetails($ticker) {
         method: "GET"
     }).done(function(data) {
         console.log(data);
-        $("#info").html("");
+        $("#info").html("<div class='col' id='infoPage'>");
+        $("#infoPage").html("<p>" + data.ticker + "</p>");
+        $("#info").append("</div>");
+        $("#info").append("<canvas id='priceChart' class='chart col center' style='width:100%;max-width:700px'></canvas>");
+
+        let n =[];
+        for (i = 0; i < data.resultsCount; i++) {
+            n[i] = i;
+        }
+        let close = [];
+        for (i = 0; i < data.resultsCount; i++) {
+            close[i] = data.results[i].c;
+        }
+
+        new Chart("priceChart", {
+            type: "line",
+            data: {
+                labels: n,
+                datasets: [{
+                    data: close,
+                    borderColor: "blue",
+                    fill: true
+                }],
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Stock Price (USD)'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Days'
+                        }
+                    }]
+                }
+            }
+        });
         b=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data.results,
             method: "POST"
