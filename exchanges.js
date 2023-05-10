@@ -19,6 +19,7 @@ if (dd < 10) dd = '0' + dd;
 if (mm < 10) mm = '0' + mm;
 
 const formattedLastWeek = y + '-' + mm + '-' + dd;
+const formattedLastYear = (y - 1) + '-' + m + '-' + d;
 getExchange();
 
 function getExchange() {
@@ -71,31 +72,62 @@ function getTicker($exchange) {
 
 function getDetails($ticker) {
     a=$.ajax({
-        url: URL + "v2/aggs/ticker/" + $ticker + "/range/1/day/" + formattedLastWeek + "/" + formattedToday + "?adjusted=true&sort=asc&limit=120&apiKey=" + key,
+        url: URL + "v2/aggs/ticker/" + $ticker + "/range/1/day/" + formattedLastWeek + "/" + formattedToday + "?adjusted=true&sort=asc&limit=5000&apiKey=" + key,
         method: "GET"
     }).done(function(data) {
         console.log(data);
-        $("#info").html("<div class='col' id='infoPage'>");
-        $("#infoPage").html("<p>" + data.ticker + "</p>");
+        $("#info").html("<div class='col row infoPage' id='infoPage'>");
+        $("#infoPage").html("");
+        $("#infoPage").append("<div class='col' id='logoCol'>");
+        $("#infoPage").append("<div class='col' id='infoCol1'>");
+        
+        $("#infoCol1").html("<p> At close on " + formattedToday + "</p><p class='inline top'>$</p>");
+        $("#infoCol1").append("<h1 class='inline'>" + data.results[0].c + "</h1>");
+        $("#infoCol1").append("<p class='inline'> USD</p>");
+        b=$.ajax({
+            url: URL + "v2/aggs/ticker/" + $ticker + "/range/1/day/" + formattedLastYear + "/" + formattedToday + "?adjusted=true&sort=asc&limit=50000&apiKey=" + key,
+            method: "GET"
+        }).done(function(data) {
+            $("#infoCol1").append("<p>52 week range</p><h1>" + data.results[0].c + " - " + data.results[data.count - 1].c + "</h1>");
+        })
+        $("#infoPage").append("<div class='col' id='infoCol2'>");
+        $("#infoCol2").html("<p>Ticker</p><h1>" + $ticker + "</h1><p>Volume</p><h1>" + data.results[0].v + "</h1>");
+        
+        $("#infoPage").append("</div>");
         $("#info").append("</div>");
         $("#info").append("<canvas id='priceChart' class='chart col center' style='width:100%;max-width:700px'></canvas>");
-
+        
+        c=$.ajax({
+            url: URL + "v3/reference/tickers/" + $ticker + "?apiKey=" + key,
+            method: "GET"
+        }).done(function(data) {
+            console.log(data);
+            $("#logoCol").append("<p>Name</p><h1>" + data.results.name + "</h1>");
+            if(data.results.branding.logo_url != null) {
+                $("#logoCol").prepend("<div class='col'><img src='" + data.results.branding.logo_url + "?apikey=" + key +"'></div>")
+            }
+       
+        })
         let n =[];
         for (i = 0; i < data.resultsCount; i++) {
             n[i] = i;
         }
         let close = [];
+        let max = -1;
         for (i = 0; i < data.resultsCount; i++) {
             close[i] = data.results[i].c;
+            if (max <= close[i]) {
+                max = close[i];
+            }
         }
-
+        $("#infoCol2").append("<p>7 Day High</p><h1>" + max + "</h1>");
         new Chart("priceChart", {
             type: "line",
             data: {
                 labels: n,
                 datasets: [{
                     data: close,
-                    borderColor: "blue",
+                    borderColor: "green",
                     fill: true
                 }],
             },
@@ -104,22 +136,35 @@ function getDetails($ticker) {
                     display: false
                 },
                 scales: {
+                    
                     yAxes: [{
+                        ticks: {
+                            fontColor: 'white'
+                        },
                         scaleLabel: {
                             display: true,
-                            labelString: 'Stock Price (USD)'
+                            labelString: 'Stock Price (USD)',
+                            fontColor: 'white',
+                            fontSize: 18
                         }
+                        
                     }],
-                    xAxes: [{
+                    xAxes: [{ 
+                        ticks: {
+                            fontColor: 'white'
+                        },                      
                         scaleLabel: {
                             display: true,
-                            labelString: 'Days'
+                            labelString: 'Days',
+                            fontColor: 'white',
+                            fontSize: 18
                         }
                     }]
                 }
             }
         });
-        b=$.ajax({
+        
+        d=$.ajax({
             url: php + "setStock&stockTicker=" + $ticker + "&queryType=detail&jsonData=" + data.results,
             method: "POST"
         });
@@ -133,13 +178,16 @@ function getNews($ticker) {
     }).done(function(data) {
         console.log(data);
         if(data.count >0 ) {
-            $("#info").html("<div class='p'>Stocks</div>");
+            $("#info").html("<div class='p'>Latest News on " + $ticker + "</div>");
             $("#info").append("<table id='table1' class='container'>");
-            $("#table1").html("<thead class='center'><tr class='row'><th class='col'>Stock</th><th class='col'>Date and Time</th><th class='col'>Type</th></tr></thead>");
+            $("#table1").html("<thead class='center'><tr class='row'><th class='col'>Publication</th><th class='col'>Title</th><th class='col'>Date Published</th></tr></thead>");
             $("#table1").append("<tbody id='stockLines' class='center'>");
             $("#stockLines").html("");
+            
             for (let i = 0; i < data.count; i++) {
-                $("#stockLines").append("<tr class='row'><td class='col'>" + data.results[i].title + "</td><td class='col'>" + data.results[i].author + "</td><td class='col'> <a href='" + data.results[i].article_url + "'>" + data.results[i].publisher.name + "</a></td></tr>");
+                const da = new Date(data.results[i].published_utc);
+                const datePub = (da.getMonth() + 1) + "/" + da.getDate() + "/" + da.getFullYear();
+                $("#stockLines").append("<tr class='row tr'><td class='col publ'>" + data.results[i].publisher.name + "</td><td class='col'> <a href='" + data.results[i].article_url + "'>" + data.results[i].title + "</a></td><td class='col dat'>" + datePub +  "</td></tr>");
             }
             $("#table1").append("</tbody>");
             $("#info").append("</table>");
