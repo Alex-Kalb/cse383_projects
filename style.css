@@ -173,7 +173,7 @@ th {
 }
 
 td a {
-    color: olivedrab;
+    color: crimson;
     font-size: 20px;
 }
 
@@ -185,7 +185,6 @@ th {
 
 .tr {
     margin: 10px;
-    border-bottom: 10px, limegreen;
 }
 
 .center {
@@ -216,7 +215,11 @@ th {
     margin: 20px;
     background-image: linear-gradient(rgb(211, 211, 211, 85%), rgb(128, 128, 128, 80%));
     border-radius: 20px;
-    color: white
+    color: white;
+    width: 75%;
+    margin-left: auto;
+    margin-bottom: 50px;
+    margin-right: auto;
 }
 
 
@@ -239,6 +242,9 @@ img {
     vertical-align: top;
 }
 
+.ret p {
+    text-decoration: underline;
+}
 h1 {
     font-weight: 600;
     margin-top: 0;
