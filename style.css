@@ -207,6 +207,11 @@ th {
     max-height: 90%;
 }
 
+.exp p {
+    font-size: 25px;
+    font-weight: 550;
+}
+
 .exp {
     margin: 20px;
     background-image: linear-gradient(rgb(211, 211, 211, 85%), rgb(128, 128, 128, 80%));
