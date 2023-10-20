@@ -1,92 +1,174 @@
-# cse383_projects
+# phpLiteAdmin
 
+Website: https://www.phpliteadmin.org/
 
+Bitbucket: https://bitbucket.org/phpliteadmin/public/
 
-## Getting started
+## What is phpLiteAdmin?
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+phpLiteAdmin is a web-based SQLite database admin tool written in PHP with
+support for SQLite3 and SQLite2. Following in the spirit of the flat-file system
+used by SQLite, phpLiteAdmin consists of a single source file, phpliteadmin.php,
+that is dropped into a directory on a server and then visited in a browser.
+There is no installation required. The available operations, feature set,
+interface, and user experience is comparable to that of phpMyAdmin.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## News
 
-## Add your files
+**05.09.2019: phpLiteAdmin 1.9.8.2 released [Download now](https://www.phpliteadmin.org/download/)**
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+**03.09.2019: phpLiteAdmin 1.9.8.1 released [Download now](https://www.phpliteadmin.org/download/)**
 
-```
-cd existing_repo
-git remote add origin https://gitlab.csi.miamioh.edu/kalbaj/cse383_projects.git
-git branch -M main
-git push -uf origin main
-```
+**30.08.2019: phpLiteAdmin 1.9.8 released [Download now](https://www.phpliteadmin.org/download/)**
 
-## Integrate with your tools
+**17.08.2017: [Security alert: phpLiteAdmin 1.9.8-dev](https://www.phpliteadmin.org/2017/08/17/security-alert-1-9-8-dev/) (stable versions not affected)**
 
-- [ ] [Set up project integrations](https://gitlab.csi.miamioh.edu/kalbaj/cse383_projects/-/settings/integrations)
+**14.12.2016: Just released phpLiteAdmin 1.9.7.1 as 1.9.7 was built incorrectly [Download now](https://www.phpliteadmin.org/download/)**
 
-## Collaborate with your team
+**13.12.2016: Just released phpLiteAdmin 1.9.7! [Download now](https://www.phpliteadmin.org/download/)**
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+**05.07.2015: Just released phpLiteAdmin 1.9.6! [Download now](https://www.phpliteadmin.org/download/)**
 
-## Test and Deploy
+## Features
 
-Use the built-in continuous integration in GitLab.
+-   Lightweight - consists of a single 200KB source file for portability
+-   Supports SQLite3 and SQLite2 databases
+-   Translated and available in over 10 languages - and counting
+-   Specify and manage an unlimited number of databases
+-   Specify a directory and optionally its subdirectories to scan for databases
+-   Create and delete databases
+-   Add, delete, rename, empty, and drop tables
+-   Browse, add, edit, and delete records
+-   Add, delete, and edit table columns
+-   Manage table indexes
+-   Manage table triggers
+-   Import and export tables, structure, indexes, and data (SQL, CSV)
+-   View data as bar, pie, and line charts
+-   Graphical search tool to find records based on specified field values
+-   Create and run your own custom SQL queries in the free-form query editor/builder
+-   Easily apply core SQLite functions to column values using the GUI
+-   Write your own PHP functions to be available to apply to column values
+-   Design your own theme using CSS or install a pre-made theme from the community
+-   All presented in an intuitive, easy-to-use GUI that allows non-technical, SQL-illiterate users to fully manage databases 
+-   Allows multiple installations on the same server, each with a different password
+-   Secure password-protected interface with login screen and cookies
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Demo
 
-***
+A live demo of phpLiteAdmin can be found here:
+https://demo.phpliteadmin.org/
 
-# Editing this README
+## Requirements
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+-   a server with PHP >= 5.2.4 installed
+-   at least one PHP SQLite library extension installed and enabled: PDO,
+    SQLite3, or SQLiteDatabase
+    
+PHP version 5.3.0 and greater usually comes with the SQLite3 extension installed
+and enabled by default so no custom action is necessary.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Download
 
-## Name
-Choose a self-explaining name for your project.
+The files in the source repositories are meant for development, not for use in production.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+You can find the latest downloads here:
+https://www.phpliteadmin.org/download/
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+See https://bitbucket.org/phpliteadmin/public/wiki/Installation
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Configuration
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+**NEW** as of 1.9.4: You can now configure phpLiteAdmin in an external file. If
+you want to do this:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+-   rename `phpliteadmin.config.sample.php` into `phpliteadmin.config.php`
+-   do not change the settings in `phpliteadmin.php` but in
+    `phpliteadmin.config.php`
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+See https://bitbucket.org/phpliteadmin/public/wiki/Configuration for details.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+1.   Open `phpliteadmin.config.php` (or `phpliteadmin.php` before 1.9.4) in
+     a text editor.
+	
+2.   If you want to have a directory scanned for your databases instead of
+     listing them manually, specify the directory as the value of the 
+     `$directory` variable and skip to step 4. 
+	
+3.   If you want to specify your databases manually, set the value of the
+     `$directory` variable as false and modify the `$databases` array to
+     hold the databases you would like to manage.
+	
+    -   The path field is the file path of the database relative to where
+        `phpliteadmin.php` will be located on the server. For example, if
+        `phpliteadmin.php` is located at "databases/manager/phpliteadmin.php" and
+        you want to manage "databases/yourdatabase.sqlite", the path value
+        would be "../yourdatabase.sqlite".
+		
+    -   The name field is the human-friendly way of referencing the database
+        within the application. It can be anything you want.
+
+4.   Modify the `$password` variable to be the password used for gaining access
+     to the phpLiteAdmin tool.
+	
+5.   If you want to have multiple installations of phpLiteAdmin on the same
+     server, change the `$cookie_name` variable to be unique for each installation
+     (optional).
+
+6.   Save and upload `phpliteadmin.php` to your web server.
+	
+7.   Open a web browser and navigate to the uploaded `phpliteadmin.php` file. You
+     will be prompted to enter a password. Use the same password you set in step 4.
+     
+## Code Repository and pull requests
+
+The code repository is available both on bitbucket and github:
+
+Github: https://github.com/phpLiteAdmin/pla
+
+Bitbucket: https://bitbucket.org/phpliteadmin/public/src
+
+You are welcome to fork the project and send us pull requests on any of these
+platforms.
+
+## Installing a theme
+	
+1.   Download the themes package from the [project Downloads page](https://www.phpliteadmin.org/download/).
+	
+2.   Unzip the file and choose your desired theme.
+	
+3.   Upload `phpliteadmin.css` from the theme's directory alongside
+     `phpliteadmin.php`.
+	
+4.   Your theme will automatically override the default.
+
+
+## Getting help
+
+The project's wiki provides information on how to do certain things and is
+located at https://bitbucket.org/phpliteadmin/public/wiki/Home .
+In addition, the project's discussion group is located at
+https://groups.google.com/group/phpliteadmin .
+
+
+## Reporting errors and bugs
+
+If you find any issues while using the tool, please report them at
+https://bitbucket.org/phpliteadmin/public/issues?status=new&status=open .
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the **GNU General Public License** as published by
+the Free Software Foundation, either **version 3** of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <[https://www.gnu.org/licenses/](https://www.gnu.org/licenses/)>.
